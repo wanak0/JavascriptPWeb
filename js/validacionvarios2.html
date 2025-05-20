@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con 4 campos</title>
+</head>
+<body>
+    <h1>Formulario de Ejemplo</h1>
+    <form id="miFormulario" onsubmit="return valida(this)" action="https://www.itlalaguna.edu.mx">
+        <div>
+            <label for="campo1">Campo 1:</label>
+            <input type="text" id="campo1" name="campo1" required>
+        </div>
+        <br>
+        <div>
+            <label for="campo2">Campo 2:(debe ser numero)</label>
+            <input type="text" id="campo2" name="campo2" required>
+        </div>
+        <br>
+        <div>
+            <label for="campo3">Codigo Postal</label>
+            <input type="text" id="campo3" name="cpostal" required>
+        </div>
+        <br>
+        <div>
+            <label for="campo4">email:</label>
+            <input type="text" id="campo4" name="email" required>
+        </div>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        function valida(formulario) {
+            if (!formulario.campo1.value ||
+                !formulario.campo2.value || 
+                !formulario.campo3.value ||
+                !formulario.campo4.value) {
+                alert('Todos los campos son obligatorios');
+                return false;
+            }
+            else if (isNaN(formulario.campo2.value)) {
+                alert('El campo 2 debe ser un número');
+                return false;
+            }
+            else if (!/^\d{5}$/.test(formulario.campo3.value)) {
+                alert('Debe ser un codigo postal válido (5 dígitos)');
+                return false;
+            }
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formulario.campo4.value)) {
+                alert('El email no es válido');
+                return false;
+            }
+            else {
+                alert('Formulario enviado correctamente');
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
